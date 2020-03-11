@@ -1,3 +1,5 @@
+#!/usr/bin/awk -f
+
 BEGIN {
     find=ARGV[1];
     repl=ARGV[2];
