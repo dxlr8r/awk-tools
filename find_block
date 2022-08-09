@@ -1,0 +1,15 @@
+#!/bin/sh
+
+_find_block() {
+  awk -v START="$1" -v STOP="$2" -v LN="${4:-0}" '
+  BEGIN { NEXT=0 }
+  {
+    if (NEXT == 0) {
+      if ($0 ~ START && NR > LN) { NEXT=1; print $0 }
+    }
+    else {
+      if ($0 ~ STOP) { print $0 }
+      else { exit }
+    }
+  }' "$3"
+}
